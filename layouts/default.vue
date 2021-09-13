@@ -13,8 +13,24 @@
         <v-toolbar-title :class="$style.app_title" v-text="title" />
       </nuxt-link>
       <v-spacer />
-      <v-btn text :class="$style.register_btn">ユーザー登録</v-btn>
-      <v-btn text :class="$style.log_in_btn">ログイン</v-btn>
+      <div v-if="isSignedIn">
+        <nuxt-link to="/article">
+          <v-btn text :class="$style.register_btn">記事作成</v-btn>
+        </nuxt-link>
+        <nuxt-link to="/">
+          <v-btn text @click="logout" :class="$style.log_in_btn"
+            >ログアウト</v-btn
+          >
+        </nuxt-link>
+      </div>
+      <div v-else>
+        <nuxt-link to="/sign_up">
+          <v-btn text :class="$style.register_btn">ユーザー登録</v-btn>
+        </nuxt-link>
+        <nuxt-link to="/sign_in">
+          <v-btn text :class="$style.log_in_btn">ログイン</v-btn>
+        </nuxt-link>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -26,6 +42,11 @@
 
 <script>
 export default {
+  computed: {
+    isSignedIn() {
+      return this.$store.state.user.isSignedIn
+    },
+  },
   data() {
     return {
       clipped: false,
@@ -33,6 +54,11 @@ export default {
       fixed: false,
       title: 'City Charm Information',
     }
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch('user/logOut')
+    },
   },
 }
 </script>
