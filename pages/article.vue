@@ -6,23 +6,23 @@
       label="カテゴリーを選択"
       outlined
     ></v-select>
-    <v-file-input
-      v-model="photo"
-      label="画像を選択"
-      filled
-      prepend-icon="mdi-camera"
-    ></v-file-input>
     <v-text-field
       placeholder="タイトル"
       outlined
       v-model="title"
     ></v-text-field>
-    <v-textarea
+    <!-- <v-textarea
       placeholder="記事の内容を入力してください"
       no-resize
       outlined
       v-model="body"
-    ></v-textarea>
+    ></v-textarea> -->
+    <div>
+      <no-ssr placeholder="Loading Your Editor...">
+        <vue-editor v-model="body" placeholder="記事の内容を入力してください" />
+      </no-ssr>
+      <div v-html="body" />
+    </div>
     <div class="text-right">
       <v-btn @click="post" color="blue" dark> 投稿する </v-btn>
     </div>
@@ -40,10 +40,24 @@ export default {
       body: '',
       items: ['グルメ', 'お出かけ', 'お買い物', '観光', 'ロケ地', 'その他'],
       category: '',
-      photo: '',
     }
   },
   methods: {
+    // handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+    //   const formData = new FormData()
+    //   formData.append('image', file)
+    //   this.$axios
+    //     .post('rails/active_storage/direct_uploads', formData)
+    //     .then((result) => {
+    //       const url = result.data.url // Get url from response
+    //       Editor.insertEmbed(cursorLocation, 'image', url)
+    //       resetUploader()
+    //     })
+    //     .catch((err) => {
+    //       // eslint-disable-next-line no-console
+    //       console.log(err)
+    //     })
+    // },
     async post() {
       // 多重送信を防ぐ
       this.loading = true

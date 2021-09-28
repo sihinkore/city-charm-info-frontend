@@ -24,7 +24,11 @@ export default {
   css: ['@fortawesome/fontawesome-free/css/all.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/axios.js'],
+  plugins: [
+    '~/plugins/cookie-storage.js',
+    '~/plugins/axios.js',
+    { src: '~plugins/quill.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

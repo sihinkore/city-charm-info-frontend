@@ -20,9 +20,11 @@
       <v-row style="height: 300px">
         <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
           <div>
-            <v-btn fab dark x-large color="cyan">
-              <v-icon dark x-large>fa-utensils </v-icon>
-            </v-btn>
+            <nuxt-link to="/article_gourmet">
+              <v-btn fab dark x-large color="cyan">
+                <v-icon dark x-large>fa-utensils </v-icon>
+              </v-btn>
+            </nuxt-link>
             <div :class="$style.btnText">グルメ</div>
           </div>
         </v-col>
