@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      category: 'グルメ',
+      category: 'その他',
     }
   },
   computed: {
@@ -42,7 +42,6 @@ export default {
 
 <style lang="scss" module>
 .container {
-  // text-align: center;
   max-width: 500px;
   margin: auto;
 }

@@ -21,51 +21,16 @@
     <pre>
   <code class="bash">npm install vue2-editor@images</code>
 </pre>
-    <vue-editor
-      id="editor"
-      useCustomImageHandler
-      @imageAdded="handleImageAdded"
-      v-model="editorContent"
-    >
-    </vue-editor>
+    <vue-editor id="editor"> </vue-editor>
   </div>
 </template>
 
 <script>
 import { VueEditor } from 'vue2-editor'
-import axios from 'axios'
 export default {
   name: 'app',
   components: {
     VueEditor,
-  },
-  data() {
-    return {
-      editorContent: 'Initial Content',
-    }
-  },
-  methods: {
-    handleImageAdded(file, Editor, cursorLocation) {
-      const CLIENT_ID = '993793b1d8d3e2e'
-      const formData = new FormData()
-      formData.append('image', file)
-      axios({
-        url: 'https://api.imgur.com/3/image',
-        method: 'POST',
-        headers: {
-          Authorization: 'Client-ID ' + CLIENT_ID,
-        },
-        data: formData,
-      })
-        .then((result) => {
-          console.log(result)
-          const url = result.data.data.link
-          Editor.insertEmbed(cursorLocation, 'image', url)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
   },
 }
 </script>

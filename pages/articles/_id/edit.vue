@@ -17,59 +17,47 @@
           <vue-editor
             v-model="body"
             placeholder="記事の内容を入力してください"
-            :editor-toolbar="customToolbar"
           />
         </no-ssr>
       </div>
       <div class="text-right">
-        <v-btn :class="$style.post" @click="post" color="blue" dark>
-          投稿する
+        <v-btn :class="$style.post" @click="patch" color="blue" dark>
+          更新する
         </v-btn>
       </div>
     </div>
   </v-card>
 </template>
-//
+
 <script>
 export default {
-  // ログインしていなければ、記事作成ページに飛べない
-  middleware: 'redirect',
+  computed: {
+    article: {
+      get() {
+        return this.$store.state.article.article
+      },
+    },
+  },
   data() {
     return {
       loading: false,
+      id: this.$route.params.id,
       title: '',
       body: '',
       items: ['グルメ', 'お出かけ', 'お買い物', '観光', 'ロケ地', 'その他'],
       category: '',
-      customToolbar: [
-        [
-          {
-            header: [1, 2, 3, 4, false],
-          },
-        ],
-        [
-          {
-            font: [],
-          },
-        ],
-        ['bold', 'italic', 'underline'],
-        // 文字色
-        [
-          {
-            color: [],
-          },
-          // 文字背景色
-          {
-            background: [],
-          },
-        ],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['image', 'video'],
-      ],
     }
   },
+  async created() {
+    const params = this.id
+    await this.$store.dispatch('article/fetchArticle', params)
+    const article = this.article
+    this.category = article.category
+    this.title = article.title
+    this.body = article.body
+  },
   methods: {
-    async post() {
+    async patch() {
       // 多重送信を防ぐ
       this.loading = true
       const params = {
@@ -77,8 +65,9 @@ export default {
         body: this.body,
         category: this.category,
       }
+      const id = this.id
       try {
-        await this.$axios.post('api/v1/articles', params)
+        await this.$axios.patch(`api/v1/articles/${id}`, params)
         this.$router.push('/')
       } catch (err) {
         alert(err.response.data.errors.full_messages)
