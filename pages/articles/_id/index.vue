@@ -1,7 +1,19 @@
 <template>
   <div :class="$style.container">
     <v-sheet :class="$style.sheet" elevation="3" width="600px">
+      <!-- emailとuidが一致したとき、記事が編集できる。 -->
       <div v-if="isShowBtn" :class="$style.btn">
+        <nuxt-link :to="article.id + '/edit'" :class="$style.link">
+          <v-btn class="mx-1" fab dark color="orange">
+            <v-icon dark>fas fa-pencil-alt</v-icon>
+          </v-btn>
+        </nuxt-link>
+        <v-btn @click="trash" class="mx-1" fab dark color="blue">
+          <v-icon dark>fas fa-trash-alt </v-icon>
+        </v-btn>
+      </div>
+      <!-- shinkoreでログインした時、全ての記事が編集ができる -->
+      <div v-if="isMaster" :class="$style.btn">
         <nuxt-link :to="article.id + '/edit'" :class="$style.link">
           <v-btn class="mx-1" fab dark color="orange">
             <v-icon dark>fas fa-pencil-alt</v-icon>
@@ -33,6 +45,11 @@ export default {
     isShowBtn() {
       const currentUserEmail = this.$store.getters['user/headers'].uid
       const result = currentUserEmail === this.article?.user?.email
+      return result
+    },
+    isMaster() {
+      const currentUserName = this.$store.getters['user/headers'].uid
+      const result = currentUserName === 'shinkore@example.com'
       return result
     },
   },

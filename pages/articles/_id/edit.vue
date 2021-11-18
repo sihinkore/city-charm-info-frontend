@@ -17,6 +17,7 @@
           <vue-editor
             v-model="body"
             placeholder="記事の内容を入力してください"
+            :editor-toolbar="customToolbar"
           />
         </no-ssr>
       </div>
@@ -46,6 +47,31 @@ export default {
       body: '',
       items: ['グルメ', 'お出かけ', 'お買い物', '観光', 'ロケ地', 'その他'],
       category: '',
+      customToolbar: [
+        [
+          {
+            header: [1, 2, 3, 4, false],
+          },
+        ],
+        [
+          {
+            font: [],
+          },
+        ],
+        ['bold', 'italic', 'underline'],
+        // 文字色
+        [
+          {
+            color: [],
+          },
+          // 文字背景色
+          {
+            background: [],
+          },
+        ],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['image', 'video'],
+      ],
     }
   },
   async created() {
