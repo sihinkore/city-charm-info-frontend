@@ -1,81 +1,123 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
+  <div>
+    <!-- カルーセルコンポーネント -->
+    <v-carousel
+      cycle
+      height="450"
+      hide-delimiter-background
+      show-arrows-on-hover
+    >
+      <v-carousel-item
+        v-for="(item, i) in items"
+        :key="i"
+        :src="item.src"
+      ></v-carousel-item>
+    </v-carousel>
+    <!-- ボタン -->
+    <v-container :class="$style.container">
+      <v-row style="height: 300px">
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_gourmet">
+              <v-btn fab dark x-large color="pink">
+                <v-icon dark x-large>fa-utensils </v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">グルメ</div>
           </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-col>
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_goout" :class="$style.link">
+              <v-btn fab dark x-large color="blue">
+                <v-icon dark> fa-car-side </v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">お出かけ</div>
+          </div>
+        </v-col>
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_shopping" :class="$style.link">
+              <v-btn fab dark x-large color="teal">
+                <v-icon dark> fa-shopping-cart </v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">お買い物</div>
+          </div>
+        </v-col>
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_sightseeing" :class="$style.link">
+              <v-btn fab dark x-large color="orange">
+                <v-icon dark> fa-suitcase </v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">観光</div>
+          </div>
+        </v-col>
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_location" :class="$style.link">
+              <v-btn fab dark x-large color="cyan">
+                <v-icon dark> mdi-movie-open-settings </v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">ロケ地</div>
+          </div>
+        </v-col>
+        <v-col :class="$style.btn" cols="12" sm="4" md="2" lg="2" xl="2">
+          <div>
+            <nuxt-link to="/article_others" :class="$style.link">
+              <v-btn fab dark x-large color="grey">
+                <v-icon dark>fas fa-ellipsis-h</v-icon>
+              </v-btn>
+            </nuxt-link>
+            <div :class="$style.btnText">その他</div>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        {
+          src: '/R6BP.jpeg',
+        },
+        {
+          src: '/駅.jpeg',
+        },
+        {
+          src: '/市役所.jpeg',
+        },
+        {
+          src: '/シビック.jpeg',
+        },
+      ],
+    }
+  },
+}
+</script>
+
+<style lang="scss" module>
+.container {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+.btn {
+  display: grid;
+  justify-items: center;
+}
+.link {
+  text-decoration: none;
+}
+.btnText {
+  display: grid;
+  justify-items: center;
+}
+</style>
