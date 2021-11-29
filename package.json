@@ -14,12 +14,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@nuxtjs/eslint-config": "^3.1.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/vuetify": "^1.11.2",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/vuetify": "^1.11.2",
     "browser-image-compression": "^1.0.16",
     "core-js": "^3.6.5",
     "js-cookie": "^3.0.1",
@@ -29,6 +27,8 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
