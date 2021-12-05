@@ -3,6 +3,6 @@ build:
     web: Dockerfile
   config:
     WORKDIR: app
-    API_URL: http://localhost:3000
+    API_URL: http://city-charm-info-backend.herokuapp.com
 run:
   web: yarn run start
