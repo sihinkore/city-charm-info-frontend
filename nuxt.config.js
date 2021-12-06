@@ -53,7 +53,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: { baseURL: 'http://city-charm-info-backend.herokuapp.com' },
+  axios: { baseURL: 'https://city-charm-info-backend.herokuapp.com' },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
