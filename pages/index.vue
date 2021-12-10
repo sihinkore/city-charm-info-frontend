@@ -3,7 +3,8 @@
     <!-- カルーセルコンポーネント -->
     <v-carousel
       cycle
-      height="450"
+      :height="$vuetify.breakpoint.xs ? 200 : 450"
+      :width="$vuetify.breakpoint.xs ? 400 : 1080"
       hide-delimiter-background
       show-arrows-on-hover
     >

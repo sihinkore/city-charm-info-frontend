@@ -3,39 +3,33 @@ import defu from 'defu'
 
 // Axios.prototype cannot be modified
 const axiosExtra = {
-  setBaseURL(baseURL) {
+  setBaseURL (baseURL) {
     this.defaults.baseURL = baseURL
   },
-  setHeader(name, value, scopes = 'common') {
-    for (const scope of Array.isArray(scopes) ? scopes : [scopes]) {
+  setHeader (name, value, scopes = 'common') {
+    for (const scope of Array.isArray(scopes) ? scopes : [ scopes ]) {
       if (!value) {
-        delete this.defaults.headers[scope][name]
+        delete this.defaults.headers[scope][name];
         return
       }
       this.defaults.headers[scope][name] = value
     }
   },
-  setToken(token, type, scopes = 'common') {
+  setToken (token, type, scopes = 'common') {
     const value = !token ? null : (type ? type + ' ' : '') + token
     this.setHeader('Authorization', value, scopes)
   },
   onRequest(fn) {
-    this.interceptors.request.use((config) => fn(config) || config)
+    this.interceptors.request.use(config => fn(config) || config)
   },
   onResponse(fn) {
-    this.interceptors.response.use((response) => fn(response) || response)
+    this.interceptors.response.use(response => fn(response) || response)
   },
   onRequestError(fn) {
-    this.interceptors.request.use(
-      undefined,
-      (error) => fn(error) || Promise.reject(error)
-    )
+    this.interceptors.request.use(undefined, error => fn(error) || Promise.reject(error))
   },
   onResponseError(fn) {
-    this.interceptors.response.use(
-      undefined,
-      (error) => fn(error) || Promise.reject(error)
-    )
+    this.interceptors.response.use(undefined, error => fn(error) || Promise.reject(error))
   },
   onError(fn) {
     this.onRequestError(fn)
@@ -43,32 +37,21 @@ const axiosExtra = {
   },
   create(options) {
     return createAxiosInstance(defu(options, this.defaults))
-  },
-}
-
-// Request helpers ($get, $post, ...)
-for (const method of [
-  'request',
-  'delete',
-  'get',
-  'head',
-  'options',
-  'post',
-  'put',
-  'patch',
-]) {
-  axiosExtra['$' + method] = function () {
-    return this[method].apply(this, arguments).then((res) => res && res.data)
   }
 }
 
-const extendAxiosInstance = (axios) => {
+// Request helpers ($get, $post, ...)
+for (const method of ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch']) {
+  axiosExtra['$' + method] = function () { return this[method].apply(this, arguments).then(res => res && res.data) }
+}
+
+const extendAxiosInstance = axios => {
   for (const key in axiosExtra) {
     axios[key] = axiosExtra[key].bind(axios)
   }
 }
 
-const createAxiosInstance = (axiosOptions) => {
+const createAxiosInstance = axiosOptions => {
   // Create new axios instance
   const axios = Axios.create(axiosOptions)
   axios.CancelToken = Axios.CancelToken
@@ -91,22 +74,20 @@ const setupProgress = (axios) => {
 
   // A noop loading inteterface for when $nuxt is not yet ready
   const noopLoading = {
-    finish: () => {},
-    start: () => {},
-    fail: () => {},
-    set: () => {},
+    finish: () => { },
+    start: () => { },
+    fail: () => { },
+    set: () => { }
   }
 
   const $loading = () => {
     const $nuxt = typeof window !== 'undefined' && window['$nuxt']
-    return $nuxt && $nuxt.$loading && $nuxt.$loading.set
-      ? $nuxt.$loading
-      : noopLoading
+    return ($nuxt && $nuxt.$loading && $nuxt.$loading.set) ? $nuxt.$loading : noopLoading
   }
 
   let currentRequests = 0
 
-  axios.onRequest((config) => {
+  axios.onRequest(config => {
     if (config && config.progress === false) {
       return
     }
@@ -114,7 +95,7 @@ const setupProgress = (axios) => {
     currentRequests++
   })
 
-  axios.onResponse((response) => {
+  axios.onResponse(response => {
     if (response && response.config && response.config.progress === false) {
       return
     }
@@ -126,7 +107,7 @@ const setupProgress = (axios) => {
     }
   })
 
-  axios.onError((error) => {
+  axios.onError(error => {
     if (error && error.config && error.config.progress === false) {
       return
     }
@@ -145,11 +126,11 @@ const setupProgress = (axios) => {
     $loading().finish()
   })
 
-  const onProgress = (e) => {
+  const onProgress = e => {
     if (!currentRequests || !e.total) {
       return
     }
-    const progress = (e.loaded * 100) / (e.total * currentRequests)
+    const progress = ((e.loaded * 100) / (e.total * currentRequests))
     $loading().set(Math.min(100, progress))
   }
 
@@ -159,54 +140,39 @@ const setupProgress = (axios) => {
 
 export default (ctx, inject) => {
   // runtimeConfig
-  const runtimeConfig = (ctx.$config && ctx.$config.axios) || {}
+  const runtimeConfig = ctx.$config && ctx.$config.axios || {}
   // baseURL
   const baseURL = process.browser
-    ? runtimeConfig.browserBaseURL ||
-      runtimeConfig.baseURL ||
-      'https://city-charm-info-backend.herokuapp.com'
-    : runtimeConfig.baseURL ||
-      process.env._AXIOS_BASE_URL_ ||
-      'https://city-charm-info-backend.herokuapp.com'
+    ? (runtimeConfig.browserBaseURL || runtimeConfig.baseURL || 'https://city-charm-info-backend.herokuapp.com')
+      : (runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'https://city-charm-info-backend.herokuapp.com')
 
   // Create fresh objects for all default header scopes
   // Axios creates only one which is shared across SSR requests!
   // https://github.com/mzabriskie/axios/blob/master/lib/defaults.js
   const headers = {
-    common: {
-      Accept: 'application/json, text/plain, */*',
+    "common": {
+        "Accept": "application/json, text/plain, */*"
     },
-    delete: {},
-    get: {},
-    head: {},
-    post: {},
-    put: {},
-    patch: {},
-  }
+    "delete": {},
+    "get": {},
+    "head": {},
+    "post": {},
+    "put": {},
+    "patch": {}
+}
 
   const axiosOptions = {
     baseURL,
-    headers,
+    headers
   }
 
   // Proxy SSR request headers headers
   if (process.server && ctx.req && ctx.req.headers) {
     const reqHeaders = { ...ctx.req.headers }
-    for (const h of [
-      'accept',
-      'host',
-      'cf-ray',
-      'cf-connecting-ip',
-      'content-length',
-      'content-md5',
-      'content-type',
-    ]) {
+    for (const h of ["accept","host","cf-ray","cf-connecting-ip","content-length","content-md5","content-type"]) {
       delete reqHeaders[h]
     }
-    axiosOptions.headers.common = {
-      ...reqHeaders,
-      ...axiosOptions.headers.common,
-    }
+    axiosOptions.headers.common = { ...reqHeaders, ...axiosOptions.headers.common }
   }
 
   if (process.server) {
