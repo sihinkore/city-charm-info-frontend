@@ -15,20 +15,39 @@
       <v-spacer />
       <div v-if="isSignedIn">
         <nuxt-link to="/article" :class="$style.link">
-          <v-btn text :class="$style.register_btn">記事作成</v-btn>
+          <v-btn
+            text
+            :class="$style.register_btn"
+            :height="$vuetify.breakpoint.xs ? 25 : 35"
+            >記事作成</v-btn
+          >
         </nuxt-link>
         <nuxt-link to="/" :class="$style.link">
-          <v-btn text @click="logout" :class="$style.log_in_btn"
+          <v-btn
+            text
+            @click="logout"
+            :class="$style.log_in_btn"
+            :height="$vuetify.breakpoint.xs ? 25 : 35"
             >ログアウト</v-btn
           >
         </nuxt-link>
       </div>
       <div v-else>
         <nuxt-link to="/sign_up" :class="$style.link">
-          <v-btn text :class="$style.register_btn">ユーザー登録</v-btn>
+          <v-btn
+            text
+            :class="$style.register_btn"
+            :height="$vuetify.breakpoint.xs ? 25 : 35"
+            >ユーザー登録</v-btn
+          >
         </nuxt-link>
         <nuxt-link to="/sign_in" :class="$style.link">
-          <v-btn text :class="$style.log_in_btn">ログイン</v-btn>
+          <v-btn
+            text
+            :class="$style.log_in_btn"
+            :height="$vuetify.breakpoint.xs ? 25 : 35"
+            >ログイン</v-btn
+          >
         </nuxt-link>
       </div>
     </v-app-bar>
