@@ -109,6 +109,9 @@ export default {
 .card {
   margin: auto;
   padding: 30px 170px;
+  @media screen and (max-width: 599px) {
+    padding: 30px 30px;
+  }
 }
 .app {
   max-width: 800px;

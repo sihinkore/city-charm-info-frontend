@@ -3,84 +3,98 @@
     "name": "article",
     "path": "/article",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article.vue",
-    "chunkName": "pages/article"
+    "chunkName": "pages/article",
+    "_name": "_63ac6df0"
   },
   {
     "name": "article_goout",
     "path": "/article_goout",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_goout.vue",
-    "chunkName": "pages/article_goout"
+    "chunkName": "pages/article_goout",
+    "_name": "_13a1fcd7"
   },
   {
     "name": "article_gourmet",
     "path": "/article_gourmet",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_gourmet.vue",
-    "chunkName": "pages/article_gourmet"
+    "chunkName": "pages/article_gourmet",
+    "_name": "_3f400a30"
   },
   {
     "name": "article_location",
     "path": "/article_location",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_location.vue",
-    "chunkName": "pages/article_location"
+    "chunkName": "pages/article_location",
+    "_name": "_1bff3d58"
   },
   {
     "name": "article_others",
     "path": "/article_others",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_others.vue",
-    "chunkName": "pages/article_others"
+    "chunkName": "pages/article_others",
+    "_name": "_7a15587c"
   },
   {
     "name": "article_shopping",
     "path": "/article_shopping",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_shopping.vue",
-    "chunkName": "pages/article_shopping"
+    "chunkName": "pages/article_shopping",
+    "_name": "_d11abcf2"
   },
   {
     "name": "article_sightseeing",
     "path": "/article_sightseeing",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/article_sightseeing.vue",
-    "chunkName": "pages/article_sightseeing"
+    "chunkName": "pages/article_sightseeing",
+    "_name": "_4fc6e03d"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_779afc58"
   },
   {
     "name": "sample",
     "path": "/sample",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/sample.vue",
-    "chunkName": "pages/sample"
+    "chunkName": "pages/sample",
+    "_name": "_e38594c0"
   },
   {
     "name": "sign_in",
     "path": "/sign_in",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/sign_in.vue",
-    "chunkName": "pages/sign_in"
+    "chunkName": "pages/sign_in",
+    "_name": "_2640c13e"
   },
   {
     "name": "sign_up",
     "path": "/sign_up",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/sign_up.vue",
-    "chunkName": "pages/sign_up"
+    "chunkName": "pages/sign_up",
+    "_name": "_0175f5d7"
   },
   {
     "name": "articles-id",
     "path": "/articles/:id",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/articles/_id/index.vue",
-    "chunkName": "pages/articles/_id/index"
+    "chunkName": "pages/articles/_id/index",
+    "_name": "_8ee8153e"
   },
   {
     "name": "articles-id-edit",
     "path": "/articles/:id?/edit",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/articles/_id/edit.vue",
-    "chunkName": "pages/articles/_id/edit"
+    "chunkName": "pages/articles/_id/edit",
+    "_name": "_1c9b7dcb"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/isakamasayuki/git/city-charm-info-frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_1e706c4c"
   }
 ]
